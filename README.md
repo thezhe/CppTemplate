@@ -1,2 +1,10 @@
 # CppTemplate
-A template for my c++ projects as a cmake project. Kinda like GitHub template repo, but as a cmake project you can pull from.
+Minimalistic, dependency-free, and out-of-source C++ project template.
+
+# Features:
+- GitHub Workflow
+- Builds docs
+- Versioned linter configs
+- Changelog
+- CMake and CTest
+- GNU AGPLv3
