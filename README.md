@@ -8,3 +8,9 @@ Minimalistic, dependency-free, and out-of-source C++ project template.
 - Changelog
 - CMake and CTest
 - GNU AGPLv3
+- Naming convention: CamelCase Executables/Classes/Scopes, camelBack everything else
+
+# TODO:
+- changelog
+- organize
+- docs

@@ -1,3 +1,5 @@
+# Configure, Build, and Test release on Ubuntu, Windows, and Mac using default compiler and generator.
+
 name: CMake
 
 on:
@@ -5,10 +7,11 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
 
 env:
   BUILD_TYPE: Release
-  
+
 jobs:
   build:
     name: Configure, Build, Test (${{matrix.os}})
@@ -28,4 +31,4 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ctest -C ${{env.BUILD_TYPE}
+      run: ctest -C ${{env.BUILD_TYPE}}

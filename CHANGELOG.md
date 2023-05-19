@@ -1,4 +1,4 @@
-TODO: this, CMake clang-doc, workflow build and run tests on all platforms
+
 
 <!-- Links -->
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/

@@ -1,8 +1,9 @@
 #include "CppTemplate/CppTemplate.hpp"
 #include <cstdlib>
 
-int main(int argc, const char** argv)
+int main(int argc, const char** argv) // NOLINT
 {
-    CppTemplate cpp_template{};
+    CppTemplate::CppTemplate cpp_template{}; // NOLINT
+
     return EXIT_SUCCESS;
 }

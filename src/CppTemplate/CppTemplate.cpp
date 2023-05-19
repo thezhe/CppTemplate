@@ -1,1 +1,1 @@
-#include "CppTemplate/CppTemplate.hpp"
+#include "CppTemplate/CppTemplate.hpp" // IWYU pragma: keep
