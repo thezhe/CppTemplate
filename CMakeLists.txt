@@ -16,9 +16,9 @@ Fetch a commit from a GitHub via a shallow clone.
 
 Options:
 ``REPO``
-  A path in the form of owner/repo (e.g., juce-framework/JUCE)
+  A path in the form of owner/repo (e.g., juce-framework/JUCE).
 ``TAG``
-  A GitHub tag (e.g., v1.0.0)
+  A GitHub tag (e.g., v1.0.0).
 ]]
 function(fetch_github REPO TAG)
     FetchContent_Declare(
@@ -35,7 +35,7 @@ Add a header-only library.
 
 Options:
 ``name``
-Interface name.
+Interface name -- camelBack naming convention.
 ]]
 function(add_interface name)
     add_library(${name} INTERFACE)
@@ -47,7 +47,7 @@ endfunction()
 # Dependencies
 # ############################################################################################################
 
-fetch_github(thezhe/cppConfigs v0.9)
+fetch_github(thezhe/cppConfigs v0.9) # Adds linter/formatter/debugger files to source directory
 
 # ############################################################################################################
 # Build
