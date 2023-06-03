@@ -6,7 +6,7 @@
 
 int main() // NOLINT
 {
-    CppTemplate::CppTemplate cpp_template;
+    CppTemplate::CppTemplate cpp_template{};
     assert_that(&cpp_template);
 
     return EXIT_SUCCESS;

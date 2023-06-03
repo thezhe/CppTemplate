@@ -5,6 +5,9 @@ project(
     LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED On)
+
 # ############################################################################################################
 # Helper Functions
 # ############################################################################################################
@@ -40,7 +43,6 @@ Interface name -- camelBack naming convention.
 function(add_interface name)
     add_library(${name} INTERFACE)
     add_library(${PROJECT_NAME}::${name} ALIAS ${name})
-    target_compile_features(${name} INTERFACE cxx_std_20)
 endfunction()
 
 # ############################################################################################################
