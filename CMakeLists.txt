@@ -44,20 +44,20 @@ function(add_interface name)
 endfunction()
 
 # ############################################################################################################
-# Dependencies
+# Deps
 # ############################################################################################################
 
 # fetch_github(thezhe/cppConfigs v0.9) # Adds opinionated linter/formatter/IDE/CI files to source directory.
 
 # ############################################################################################################
-# Build
+# Src
 # ############################################################################################################
 
 # CppTemplate::cppTemplate
 add_library(cppTemplate STATIC)
 add_library(CppTemplate::cppTemplate ALIAS cppTemplate)
 
-target_include_directories(cppTemplate PUBLIC include)
+target_include_directories(cppTemplate PUBLIC include/CppTemplate)
 target_sources(cppTemplate PRIVATE src/CppTemplate/CppTemplate.cpp)
 
 # CppTemplate
@@ -80,7 +80,7 @@ target_link_libraries(CppTemplateTest PRIVATE CppTemplate::cppTemplate)
 target_sources(CppTemplateTest PRIVATE test/CppTemplate/CppTemplateTest.cpp)
 
 # ############################################################################################################
-# Document
+# Install
 # ############################################################################################################
 
-# TODO: requires Test and Build
+# TODO: install
