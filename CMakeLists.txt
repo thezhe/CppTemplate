@@ -57,7 +57,7 @@ endfunction()
 add_library(cppTemplate STATIC)
 add_library(CppTemplate::cppTemplate ALIAS cppTemplate)
 
-target_include_directories(cppTemplate PUBLIC include/CppTemplate)
+target_include_directories(cppTemplate PUBLIC include)
 target_sources(cppTemplate PRIVATE src/CppTemplate/CppTemplate.cpp)
 
 # CppTemplate
