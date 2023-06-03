@@ -85,4 +85,4 @@ target_sources(CppTemplateTest PRIVATE test/CppTemplate/CppTemplateTest.cpp)
 # Install
 # ############################################################################################################
 
-# TODO: install
+# TODO: install TODO: clearer naming
