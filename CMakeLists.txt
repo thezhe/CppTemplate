@@ -47,7 +47,7 @@ endfunction()
 # Dependencies
 # ############################################################################################################
 
-fetch_github(thezhe/cppConfigs v0.9) # Adds linter/formatter/debugger files to source directory
+# fetch_github(thezhe/cppConfigs v0.9) # Adds opinionated linter/formatter/IDE/CI files to source directory.
 
 # ############################################################################################################
 # Build
@@ -83,4 +83,4 @@ target_sources(CppTemplateTest PRIVATE test/CppTemplate/CppTemplateTest.cpp)
 # Document
 # ############################################################################################################
 
-# clang-doc requires Test and Build
+# TODO: requires Test and Build

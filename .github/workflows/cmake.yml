@@ -1,4 +1,4 @@
-# Configure, Build, and Test release on Ubuntu, Windows, and Mac using default compiler and generator.
+# Configure, Build, Test and Install release on Ubuntu, Windows, and Mac using default compiler and generator.
 
 name: CMake
 
@@ -10,11 +10,15 @@ on:
   workflow_dispatch:
 
 env:
-  BUILD_TYPE: Release
+  BUILD_PATH: ${{github.workspace}}/build
+  CMAKE_BUILD_TYPE: Release
+  CMAKE_CONFIG_TYPE: Release
+  CMAKE_BUILD_PARALLEL_LEVEL: 2
+  CTEST_PARALLEL_LEVEL: 2
 
 jobs:
   build:
-    name: Configure, Build, Test (${{matrix.os}})
+    name: Configure, Build, Test, Install (${{matrix.os}})
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
@@ -24,11 +28,16 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{env.BUILD_PATH}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{env.BUILD_PATH}}
 
     - name: Test
-      working-directory: ${{github.workspace}}/build
-      run: ctest -C ${{env.BUILD_TYPE}}
+      run: ctest --test-dir ${{env.BUILD_PATH}}
+
+    # - name: Install
+    #   run: cmake --install --strip --prefix
+
+    # - name: Upload Installation
+    #   uses: actions/Upload
