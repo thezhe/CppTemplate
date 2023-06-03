@@ -54,17 +54,17 @@ endfunction()
 # ############################################################################################################
 
 # CppTemplate::cppTemplate
-add_library(cppTemplate STATIC)
-add_library(CppTemplate::cppTemplate ALIAS cppTemplate)
+add_library(libCppTemplate STATIC)
+add_library(CppTemplate::libCppTemplate ALIAS libCppTemplate)
 
-target_include_directories(cppTemplate PUBLIC ${CMAKE_SOURCE_DIR}/include)
-target_sources(cppTemplate PRIVATE ${CMAKE_SOURCE_DIR}/src/CppTemplate/CppTemplate.cpp)
+target_include_directories(libCppTemplate PUBLIC include)
+target_sources(libCppTemplate PRIVATE src/CppTemplate/CppTemplate.cpp)
 
 # CppTemplate
 add_executable(CppTemplate)
-target_link_libraries(CppTemplate PRIVATE CppTemplate::cppTemplate)
+target_link_libraries(CppTemplate PRIVATE CppTemplate::libCppTemplate)
 
-target_sources(CppTemplate PRIVATE ${CMAKE_SOURCE_DIR}/src/main.cpp)
+target_sources(CppTemplate PRIVATE src/main.cpp)
 
 # ############################################################################################################
 # Test
@@ -75,9 +75,9 @@ enable_testing()
 # CppTemplateTest
 add_executable(CppTemplateTest)
 add_test(CppTemplateTest CppTemplateTest)
-target_link_libraries(CppTemplateTest PRIVATE CppTemplate::cppTemplate)
+target_link_libraries(CppTemplateTest PRIVATE CppTemplate::libCppTemplate)
 
-target_sources(CppTemplateTest PRIVATE ${CMAKE_SOURCE_DIR}/test/CppTemplate/CppTemplateTest.cpp)
+target_sources(CppTemplateTest PRIVATE test/CppTemplate/CppTemplateTest.cpp)
 
 # ############################################################################################################
 # Install
