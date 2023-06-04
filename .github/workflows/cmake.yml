@@ -15,6 +15,7 @@ env:
   CMAKE_CONFIG_TYPE: Release
   CMAKE_BUILD_PARALLEL_LEVEL: 2
   CTEST_PARALLEL_LEVEL: 2
+  CMAKE_INSTALL_PREFIX: ${{github.workspace}}/build/installation
 
 jobs:
   build:
@@ -25,7 +26,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.5.2
 
     - name: Configure
       run: cmake -B ${{env.BUILD_PATH}}
@@ -36,8 +37,11 @@ jobs:
     - name: Test
       run: ctest --test-dir ${{env.BUILD_PATH}}
 
-    # - name: Install
-    #   run: cmake --install --strip --prefix
-
-    # - name: Upload Installation
-    #   uses: actions/Upload
+    - name: Install
+      run: cmake --install --strip --prefix ${{env.INSTALL_PREFIX}}
+  
+    - name: Upload Installation
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: Installation (${{matrix.os}})
+        path: ${{env.INSTALL_PREFIX}}
