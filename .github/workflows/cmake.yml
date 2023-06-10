@@ -1,4 +1,4 @@
-# Configure, Build, Test and Install release on Ubuntu, Windows, and Mac using default compiler and generator.
+# Upload install files as an artifact.
 
 name: CMake
 
@@ -25,7 +25,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-    - uses: actions/checkout@v3.5.2
+    - name: Checkout
+      uses: actions/checkout@v3.5.2
 
     - name: Configure
       run: cmake -B ${{env.BUILD_PATH}}
