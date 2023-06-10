@@ -8,10 +8,11 @@
 /CPPLINT.cfg
 
 # clangd
-.cache
+/.cache
 
 # VS Code
-.vscode
+/.vscode
 
 # CMake
-build
+/build
+/install
