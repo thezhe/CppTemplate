@@ -8,21 +8,20 @@ include(FetchContent)
 Shallow clone and add a CMake project from GitHub.
 
 Options:
-``REPO_TAG_STRING``
+``OWNER_REPO_TAG_STRING``
   A string in the form of owner/repo@tag (e.g., "thezhe/CppTemplate@v1.0.0").
 ]]
-function(fetch_github REPO_TAG_STRING)
-    string(REPLACE "@" ";" REPO_TAG_LIST ${REPO_TAG_STRING})
-    list(GET REPO_TAG_LIST 0 REPO)
-    list(GET REPO_TAG_LIST 1 TAG)
+function(fetch_github OWNER_REPO_TAG_STRING)
+    string(REGEX REPLACE "[/@]" ";" OWNER_REPO_TAG_LIST ${OWNER_REPO_TAG_STRING})
+    list(POP_FRONT OWNER_REPO_TAG_LIST OWNER REPO TAG)
 
     FetchContent_Declare(
-        content
-        GIT_REPOSITORY "https://github.com/${REPO}.git"
+        ${REPO}
+        GIT_REPOSITORY "https://github.com/${OWNER}/${REPO}.git"
         GIT_TAG ${TAG}
         GIT_SHALLOW ON
     )
-    FetchContent_MakeAvailable(content)
+    FetchContent_MakeAvailable(${REPO})
 endfunction()
 
 #[[
@@ -42,7 +41,10 @@ endfunction()
 # ############################################################################################################
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
+
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
+endif()
 
 cmake_minimum_required(VERSION 3.15)
 
@@ -52,7 +54,7 @@ project(CppTemplate)
 # Deps
 # ############################################################################################################
 
-# fetch_github("thezhe/cppConfigs@v0.9") # Adds opinionated linter/formatter/IDE/CI files to source directory.
+fetch_github("thezhe/cppConfigs@v0.9") # Adds opinionated linter/formatter/IDE/CI files to source directory.
 
 # ############################################################################################################
 # Src
