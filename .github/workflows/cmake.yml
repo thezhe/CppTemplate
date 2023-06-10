@@ -37,9 +37,9 @@ jobs:
       run: ctest --test-dir ${{env.BUILD_PATH}}
 
     - name: Install
-      run: cmake --install --strip
+      run: cmake --install ${{env.BUILD_PATH}} --strip
 
-    - name: Upload Installation
+    - name: Upload
       uses: actions/upload-artifact@v3.1.2
       with:
         name: Installation (${{matrix.os}})
