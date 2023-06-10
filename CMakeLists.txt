@@ -42,11 +42,6 @@ endfunction()
 # ############################################################################################################
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-if(NOT DEFINED ${CMAKE_INSTALL_PREFIX})
-    set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
-endif()
-
 set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install)
 
 cmake_minimum_required(VERSION 3.15)
