@@ -5,17 +5,16 @@ name: CMake
 on:
   push:
     branches: [ "master" ]
+    tags: "v*"
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
 
 env:
   BUILD_PATH: ${{github.workspace}}/build
+  BUILD_TYPE: Release
   INSTALL_PREFIX: ${{github.workspace}}/install
-  CMAKE_BUILD_TYPE: Release
-  CMAKE_CONFIG_TYPE: Release
-  CMAKE_BUILD_PARALLEL_LEVEL: 2
-  CTEST_PARALLEL_LEVEL: 2
+  PARALLEL_LEVEL: 2
 
 jobs:
   build:
@@ -29,19 +28,19 @@ jobs:
       uses: actions/checkout@v3.5.2
 
     - name: Configure
-      run: cmake -B ${{env.BUILD_PATH}}
+      run: cmake -B ${{env.BUILD_PATH}} -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      run: cmake --build ${{env.BUILD_PATH}}
+      run: cmake --build ${{env.BUILD_PATH}} --config ${{env.BUILD_TYPE}} -j ${{env.PARALLEL_LEVEL}}
 
     - name: Test
-      run: ctest --test-dir ${{env.BUILD_PATH}}
+      run: ctest --test-dir ${{env.BUILD_PATH}} -C ${{env.BUILD_TYPE}} -j ${{env.PARALLEL_LEVEL}}
 
     - name: Install
-      run: cmake --install ${{env.BUILD_PATH}} --prefix ${{env.INSTALL_PREFIX}} --strip
+      run: cmake --install ${{env.BUILD_PATH}} --config ${{env.BUILD_TYPE}} --prefix ${{env.INSTALL_PREFIX}} --strip
 
-    - name: Upload
+    - name: Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: Installation (${{matrix.os}})
+        name: ${{github.event.repository.name}}_${{github.ref_name}}_${{runner.os}}
         path: ${{env.INSTALL_PREFIX}}
