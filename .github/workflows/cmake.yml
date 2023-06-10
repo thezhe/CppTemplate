@@ -11,11 +11,11 @@ on:
 
 env:
   BUILD_PATH: ${{github.workspace}}/build
+  INSTALL_PREFIX: ${{github.workspace}}/install
   CMAKE_BUILD_TYPE: Release
   CMAKE_CONFIG_TYPE: Release
   CMAKE_BUILD_PARALLEL_LEVEL: 2
   CTEST_PARALLEL_LEVEL: 2
-  CMAKE_INSTALL_PREFIX: ${{github.workspace}}/install
 
 jobs:
   build:
@@ -38,10 +38,10 @@ jobs:
       run: ctest --test-dir ${{env.BUILD_PATH}}
 
     - name: Install
-      run: cmake --install ${{env.BUILD_PATH}} --strip
+      run: cmake --install ${{env.BUILD_PATH}} --prefix ${{env.INSTALL_PREFIX}} --strip
 
     - name: Upload
       uses: actions/upload-artifact@v3.1.2
       with:
         name: Installation (${{matrix.os}})
-        path: ${{env.CMAKE_INSTALL_PREFIX}}
+        path: ${{env.INSTALL_PREFIX}}
