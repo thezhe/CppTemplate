@@ -6,7 +6,3 @@ A minimalistic, dependency-free, and out-of-source C++ project template.
 - gitignore (".gitignore")
 - CHANGELOG ("CHANGELOG.md")
 - CMake and CTest ("CMakeLists.txt")
-
-# TODO:
-- changelog
-- refactor
