@@ -79,7 +79,7 @@ endfunction()
 # Deps
 # ############################################################################################################
 
-# fetch_github("thezhe/cppConfigs@v0.9") # Adds opinionated linter/formatter/IDE/CI files to source directory.
+# fetch_github("thezhe/CppConfigs@v0.9") # Adds opinionated linter/formatter/IDE/CI files to source directory.
 
 # ############################################################################################################
 # Src
